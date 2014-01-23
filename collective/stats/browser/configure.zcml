@@ -1,0 +1,49 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.stats">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="timeplotdata.txt"
+      class=".timeplotdatasourceview.TimeplotDataSourceView"
+      allowed_interface=".timeplotdatasourceview.ITimeplotDataSourceView"
+      permission="zope.Public"
+      />
+
+
+  <browser:page
+      for="*"
+      name="timeplot_view"
+      class=".timeplotview.TimeplotView"
+      template="timeplotview.pt"
+      allowed_interface=".timeplotview.ITimeplotView"
+      permission="zope.Public"
+      />
+
+
+  <browser:page
+      for="Products.ATContentTypes.interface.topic.IATTopic"
+      name="timeline.xml"
+      class=".timelinedatasourceview.TimelineDataSourceView"
+      template="timelinedatasourceview.pt"
+      allowed_interface=".timelinedatasourceview.ITimelineDataSourceView"
+      permission="zope.Public"
+      />
+
+
+  <browser:page
+      for="Products.ATContentTypes.interface.topic.IATTopic"
+      name="timeline_view"
+      class=".timelineview.TimelineView"
+      template="timelineview.pt"
+      allowed_interface=".timelineview.ITimelineView"
+      permission="zope.Public"
+      />
+
+
+</configure>

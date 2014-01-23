@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<data
+    wiki-url="http://simile.mit.edu/shelf/"
+    xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+    <tal:loop repeat="item view/context/queryCatalog">
+    <event tal:attributes="
+               start python:item.created.strftime('%b %d %Y %T %Z');
+               title item/Title;
+               link item/absolute_url;"
+            tal:content="item/Description"
+        >
+    </event>
+    </tal:loop>
+</data>
+

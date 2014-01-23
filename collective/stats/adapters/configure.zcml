@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.stats">
+
+  <!-- Include the sub-packages that use their own configure.zcml files. -->
+  <adapter factory=".collectionstats.CollectionStats"/>
+  
+  <!-- Register the installation GenericSetup extension profile -->
+  
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>

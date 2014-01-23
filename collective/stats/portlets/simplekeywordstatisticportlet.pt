@@ -1,0 +1,30 @@
+<dl class="portlet portletSimpleKeywordStatisticPortlet"
+    i18n:domain="collective.stats.portlets">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/data/header">
+           Header
+        </span>
+        <span class="portletTopRight"></span>
+    </dt>
+   <dd class="portletItem odd">
+       <ul class="collective-stats-list" style="list-style-type: decimal; margin-left: 2em; list-style-image: none;">
+        <tal:item repeat="item view/top">
+           <li>
+             <span tal:content="item/elem"></span> (<span tal:content="item/count"></span>)
+           </li>
+        </tal:item>
+       </ul>
+    </dd>
+    <dd class="portletItem even"><b>Total: </b><span tal:content="python: len(list(view.items()))"></span> 
+   </dd>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span>
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

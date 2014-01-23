@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.stats">
+
+  <!-- Ensure Plone's portlets ZCML has already been processed;
+       without this, we may get a permission lookup error -->
+  <include package="plone.app.portlets" />
+
+	<!-- -*- extra stuff goes here -*- -->
+
+  <plone:portlet
+      name="collective.stats.portlets.SimpleKeywordStatisticPortlet"
+      interface=".simplekeywordstatisticportlet.ISimpleKeywordStatisticPortlet"
+      assignment=".simplekeywordstatisticportlet.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".simplekeywordstatisticportlet.Renderer"
+      addview=".simplekeywordstatisticportlet.AddForm"
+      editview=".simplekeywordstatisticportlet.EditForm"
+      />
+
+     <utility component=".simplekeywordstatisticportlet.IndexesVocabulary"
+              provides="zope.schema.interfaces.IVocabularyFactory"
+              name="collective.stats.IndexesVocabulary"/>
+
+
+</configure>

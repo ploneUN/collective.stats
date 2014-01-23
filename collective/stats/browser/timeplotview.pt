@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.stats">
+<tal:script metal:fill-slot="javascript_head_slot">
+<script type="text/javascript" src="http://api.simile-widgets.org/timeplot/1.1/timeplot-api.js"></script>
+<script>
+var timeplot;
+
+function onLoad() {
+            var red = new Timeplot.Color('#B9121B');
+            var blue = new Timeplot.Color('#193441');
+            var green = new Timeplot.Color('#468966');
+            var lightGreen = new Timeplot.Color('#5C832F');
+            var gridColor  = new Timeplot.Color('#000000');
+
+            var geometry1 = new Timeplot.DefaultValueGeometry({
+                gridColor: gridColor,
+                gridType: "short",
+                axisLabelsPlacement: "left",
+                min :0,
+            });
+
+  var eventSource = new Timeplot.DefaultEventSource();
+  var plotInfo = [
+    Timeplot.createPlotInfo({
+      id: "plot1",
+      dataSource: new Timeplot.ColumnSource(eventSource,1),
+      showValues: true,
+      lineColor:red,
+      valueGeometry: geometry1,
+    }),
+    Timeplot.createPlotInfo({
+      id: "plot2",
+      dataSource: new Timeplot.ColumnSource(eventSource,2),
+      showValues: true,
+      lineColor:blue,
+      valueGeometry: geometry1,
+
+    }),
+    Timeplot.createPlotInfo({
+      id: "plot3",
+      dataSource: new Timeplot.ColumnSource(eventSource,3),
+      showValues: true,
+      lineColor:green,
+      valueGeometry: geometry1,
+
+    })
+
+  ];
+            
+  timeplot = Timeplot.create(document.getElementById("my-timeplot"), plotInfo);
+  timeplot.loadText("timeplotdata.txt", ",", eventSource);
+}
+
+var resizeTimerID = null;
+function onResize() {
+    if (resizeTimerID == null) {
+        resizeTimerID = window.setTimeout(function() {
+            resizeTimerID = null;
+            timeplot.repaint();
+        }, 100);
+    }
+}
+
+
+$(document).ready(onLoad);
+$(window).resize(onResize);
+</script>
+</tal:script>
+<body>
+    <div metal:fill-slot="main">
+        <tal:main-macro metal:define-macro="main">
+
+
+        <div id="my-timeplot" style="height: 300px"></div>
+
+        </tal:main-macro>
+    </div>
+</body>
+</html>
